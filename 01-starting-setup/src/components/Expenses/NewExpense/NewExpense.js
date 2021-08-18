@@ -8,6 +8,7 @@ const NewExpense = (props) => {
             ...enteredExpenseData,
             id: Math.random().toString()
         };
+        // lifting the data back upB8
         props.onAddExpense(expenseData);
     };
 
