@@ -18,8 +18,8 @@ function Expenses(props) {
     
     return (<div>
             <Card className='expenses'>
-            <ExpensesFilter selected={filteredYear} onFilterChange={filterChangeHandler} />
-            <ExpensesList items={filteredExpenses} />
+                <ExpensesFilter selected={filteredYear} onFilterChange={filterChangeHandler} />
+                <ExpensesList items={filteredExpenses} />
                
                {/* ...and the most lean way keeps the logic out of the return - what we have uncommented...
                {filteredExpenses.length === 0 && <p>No expenses found...</p>}
@@ -32,7 +32,7 @@ function Expenses(props) {
                         date={expense.date}/>))
                 } */}
                
-               {/*  ifs and for not allowd in brackets so  we have to use a lot of ternarys
+               {/*  ifs and for not allowed in brackets so  we have to use a lot of ternarys
                 if the ternary gets too long we can short hand hack it the way it's done above*/}
                 {/* {filteredExpenses.length === 0 ? (
                     <p>No expenses found...</p>

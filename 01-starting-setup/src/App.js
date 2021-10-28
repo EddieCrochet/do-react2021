@@ -22,6 +22,18 @@ const DUMMYEXPENSES = [
     amount: 450,
     date: new Date(2021, 5, 12),
   },
+  {
+    id: 'e4',
+    title: 'pig',
+    amount: 694.67,
+    date: new Date(2019, 2, 8),
+  },
+  {
+    id: 'e5',
+    title: 'abelton upgrade',
+    amount: 950,
+    date: new Date(2019, 5, 12),
+  },
 ];
 
 const App = () => {

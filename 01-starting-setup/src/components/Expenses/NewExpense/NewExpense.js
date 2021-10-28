@@ -27,8 +27,11 @@ const NewExpense = (props) => {
     <div className="new-expense">
         {!isEditing && <button onClick={startEditingHandler}>Add New Expense</button>}
          {/*this sets a pointer to the saveExpenseDataHandler function 
-         in this ExpenseForm instance*/}
-        {isEditing && <ExpenseForm onStopEditing={stopEditingHandler} onSaveExpenseData={saveExpenseDataHandler} /> }
+         in this ExpenseForm instance
+         --- If we are editing we want to see the button---
+         -- if we are NOT editing we want to see the expense form---*/}
+        {isEditing && <ExpenseForm onStopEditing={stopEditingHandler} 
+        onSaveExpenseData={saveExpenseDataHandler} /> }
     </div>
     );
 };
