@@ -2,6 +2,7 @@ import ExpensesList from './ExpensesList';
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
+import ExpensesChart from './ExpensesChart';
 import React, { useState } from 'react';
 
 function Expenses(props) {
@@ -19,6 +20,7 @@ function Expenses(props) {
     return (<div>
             <Card className='expenses'>
                 <ExpensesFilter selected={filteredYear} onFilterChange={filterChangeHandler} />
+                <ExpensesChart expenses={filteredExpenses} />
                 <ExpensesList items={filteredExpenses} />
                
                {/* ...and the most lean way keeps the logic out of the return - what we have uncommented...

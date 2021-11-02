@@ -4,6 +4,7 @@ import './ExpensesFilter.css';
 
 const ExpensesFilter = (props) => {
   const yearSelectorhandler = (event) => {
+    // PASSING DATA BACK TO PARENT COMPONENT
     props.onFilterChange(event.target.value);
   };
 
