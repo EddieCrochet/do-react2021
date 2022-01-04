@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 import Card from '../UI/Card';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button';
+import Wrapper from '../Helpers/Wrapper';
 import ErrorModal from '../UI/ErrorModal';
 
 const AddUser = (props) => {
@@ -44,7 +45,8 @@ const AddUser = (props) => {
     }
 
     return (
-        <div>
+        //<Wrapper>
+        <Fragment>
             {/* referring to below --> error is undefined until it exists... this is how we
             conditionally render a jsx element */}
             {error && <ErrorModal 
@@ -68,7 +70,8 @@ const AddUser = (props) => {
                     <Button type="submit">Add User</Button>
                 </form>
             </Card>
-        </div>
+        </Fragment>
+        //</Wrapper>
     );
 };
 
