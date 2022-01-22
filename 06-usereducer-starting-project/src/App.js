@@ -33,9 +33,10 @@ function App() {
     // auth can be used as root component
     //<React.Fragment>
       <AuthContext.Provider value={{
-        isLoggedIn: isLoggedIn
+        isLoggedIn: isLoggedIn,
+        onLogout: logoutHandler  
       }}>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+      <MainHeader/>
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}
