@@ -42,16 +42,17 @@ const cartReducer = (state, action) => {
     }
 
     if(action.type === "REMOVE") {
-        // find index of existing itme if it exists in array
+        // find index of existing item if it exists in array
         const existingCartItemIndex = state.items.findIndex(
-            item => item.id === action.item.id
+            item => item.id === action.id
         );
+        // retrieve itme from index
         const existingItem = state.items[existingCartItemIndex];
         const updatedTotalAmount = state.totalAmount - existingItem.price;
         let updatedItems;
         if(existingItem.amount === 1){
             // remove item from array
-
+            updatedItems = state.items.filter(item => item.id !== action.id);
         } else {
             // keep item in the cart
 
