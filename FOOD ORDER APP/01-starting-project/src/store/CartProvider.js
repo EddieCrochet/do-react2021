@@ -22,6 +22,7 @@ const cartReducer = (state, action) => {
 
         // if the item type already exists in the cart
         if (existingCartItem) {
+            // DO NOT add more items to the list, but increase the item's amount
             const updatedItem = {
                 ...existingCartItem,
                 amount: existingCartItem.amount + action.item.amount
@@ -30,12 +31,30 @@ const cartReducer = (state, action) => {
             updatedItems[existingCartItemIndex] = updatedItem;
         }else  {
             //when an item is added for the first time to that cart items array
+            // add whole new item to list
             updatedItems = state.items.concat(action.item);
         };
         
         return {
             items: updatedItems,
             totalAmount: updatedTotalAmount
+        }
+    }
+
+    if(action.type === "REMOVE") {
+        // find index of existing itme if it exists in array
+        const existingCartItemIndex = state.items.findIndex(
+            item => item.id === action.item.id
+        );
+        const existingItem = state.items[existingCartItemIndex];
+        const updatedTotalAmount = state.totalAmount - existingItem.price;
+        let updatedItems;
+        if(existingItem.amount === 1){
+            // remove item from array
+
+        } else {
+            // keep item in the cart
+
         }
     }
 
