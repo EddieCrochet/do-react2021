@@ -16,4 +16,5 @@ const Button = (props) => {
   );
 };
 
+// only rerenders component in it got new values (memo)
 export default React.memo(Button);
