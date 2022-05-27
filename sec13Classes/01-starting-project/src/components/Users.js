@@ -14,6 +14,13 @@ class Users extends Component {
     };
   }
 
+  componentDidUpdate() {
+    if(this.props.users.length === 0) {
+      // throws the following error if we have no users in the components props
+      throw new Error('No users provided!');
+    }
+  }
+
   toggleUsersHandler() {
     // setState is inherit from Component
     this.setState((curState) => {
