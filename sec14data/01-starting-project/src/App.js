@@ -8,10 +8,19 @@ function App() {
   const [movies, setMovies] = useState([]);
   // using this isLoading state to show a notif for loading or not
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
  async function fetchMoviesHandler() {
    setIsLoading(true);
-   const response = await fetch('https://swapi.dev/api/films')
+   setError(null);
+   // set our states, and then try the following with an error catch
+   try {
+    const response = await fetch('https://swapi.dev/api/films');
+    // check if the response is ok before i try to parse the response body
+    if(!response.ok) {
+      throw new Error('The response is not ok!');
+    }
+ 
    const data = await response.json();
 
     // we now transform our json data into data useable by the 
@@ -27,17 +36,33 @@ function App() {
     // now our transformed json data is passed into the
     // function for the next then block
     setMovies(transformedMovies);
-    setIsLoading(false);
+   }catch (error) {
+    setError(error.message);
+  }
+  // stop loading after its all done
+  setIsLoading(false);
+ } 
+
+ let content = <p> Found no movies.</p>
+
+ if(movies.length > 0){
+  content = <MoviesList movies={movies} />
+}
+ if (error) {
+   content = <p>{error}</p>
  }
+
+ if (isLoading) {
+   content = <p>Loading...</p>
+ }
+
   return (
     <React.Fragment>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        {!isLoading && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && <p>There were no movies found!</p>}
-        {isLoading && <p>Loading...</p>}
+        {content}
       </section>  
     </React.Fragment>
   );
