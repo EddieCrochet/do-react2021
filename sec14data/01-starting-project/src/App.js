@@ -7,12 +7,10 @@ function App() {
 
   const [movies, setMovies] = useState([]);
 
- function fetchMoviesHandler() {
-  fetch('https://swapi.dev/api/films').then(response => {
-    // pass our response to a function that calls the json()
-    // function that turns the response into json format
-      return response.json();
-  }).then(data => {
+ async function fetchMoviesHandler() {
+  const response = await fetch('https://swapi.dev/api/films')
+  const data = await response.json();
+
     // we now transform our json data into data useable by the 
     // application due to props
     const transformedMovies = data.results.map(movieData => {
@@ -26,7 +24,6 @@ function App() {
     // now our transformed json data is passed into the
     // function for the next then block
     setMovies(transformedMovies);
-  })
  }
   return (
     <React.Fragment>
