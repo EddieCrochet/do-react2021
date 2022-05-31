@@ -6,10 +6,13 @@ import './App.css';
 function App() {
 
   const [movies, setMovies] = useState([]);
+  // using this isLoading state to show a notif for loading or not
+  const [isLoading, setIsLoading] = useState(false);
 
  async function fetchMoviesHandler() {
-  const response = await fetch('https://swapi.dev/api/films')
-  const data = await response.json();
+   setIsLoading(true);
+   const response = await fetch('https://swapi.dev/api/films')
+   const data = await response.json();
 
     // we now transform our json data into data useable by the 
     // application due to props
@@ -24,6 +27,7 @@ function App() {
     // now our transformed json data is passed into the
     // function for the next then block
     setMovies(transformedMovies);
+    setIsLoading(false);
  }
   return (
     <React.Fragment>
@@ -31,7 +35,9 @@ function App() {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {!isLoading && <MoviesList movies={movies} />}
+        {!isLoading && movies.length === 0 && <p>There were no movies found!</p>}
+        {isLoading && <p>Loading...</p>}
       </section>  
     </React.Fragment>
   );
